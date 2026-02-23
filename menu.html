@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | תפריט</title>
+    <style>
+        :root {
+            --gold: #c5a059;
+            --charcoal: #333333;
+            --rose-bg: #fff5f5; 
+            --card-bg: #ffffff;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--rose-bg);
+            color: var(--charcoal);
+            margin: 0; padding: 20px;
+        }
+
+        .container { max-width: 500px; margin: 0 auto; }
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        h1 { color: var(--gold); margin-bottom: 30px; font-size: 1.8em; }
+        h2 { color: var(--gold); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 25px; }
+
+        .menu-item { margin-bottom: 20px; }
+        .dish-name { font-weight: bold; display: block; }
+        .dish-desc { font-size: 0.9em; color: #666; }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Language Logic */
+        [lang="en"] .lang-he, [lang="en"] .lang-de { display: none; }
+        [lang="he"] .lang-en, [lang="he"] .lang-de { display: none; }
+        [lang="de"] .lang-en, [lang="de"] .lang-he { display: none; }
+        [dir="rtl"] .section { text-align: right; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="section">
+            <h1 class="lang-en">🍽️ Our Menu</h1>
+            <h1 class="lang-he">🍽️ התפריט שלנו</h1>
+            <h1 class="lang-de">🍽️ Unser Menü</h1>
+
+            <h2 class="lang-en">Appetizers</h2>
+            <h2 class="lang-he">מנות פתיחה</h2>
+            <h2 class="lang-de">Vorspeisen</h2>
+            <div class="menu-item">
+                <span class="dish-name lang-en">Garden Fresh Salad</span>
+                <span class="dish-name lang-he">סלט גן רענן</span>
+                <span class="dish-name lang-de">Frischer Gartensalat</span>
+            </div>
+
+            <h2 class="lang-en">Main Course</h2>
+            <h2 class="lang-he">מנות עיקריות</h2>
+            <h2 class="lang-de">Hauptspeisen</h2>
+            <div class="menu-item">
+                <span class="dish-name lang-en">Slow Roasted Beef</span>
+                <span class="dish-name lang-he">נתח בקר בצלייה איטית</span>
+                <span class="dish-name lang-de">Langsam gebratenes Rindfleisch</span>
+            </div>
+
+            <a href="index.html" id="back-link" class="back-btn">
+                <span class="lang-en">← Back to Main Page</span>
+                <span class="lang-he">← חזרה לעמוד הראשי</span>
+                <span class="lang-de">← Zurück zur Hauptseite</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            const root = document.getElementById('site-root');
+            root.setAttribute('lang', lang);
+            root.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+            document.getElementById('back-link').href = 'index.html?lang=' + lang;
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'en';
+            setLang(lang);
+        };
+    </script>
+</body>
+</html>
