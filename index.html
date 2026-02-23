@@ -79,24 +79,32 @@
         margin-top: 20px; 
     }
     
+    nav-btn img {
+        width: 32px;  /* Adjust size as needed */
+        height: 32px;
+        object-fit: contain;
+        margin-bottom: 4px;
+    }
+
     .nav-btn {
-        padding: 12px 5px;
+        padding: 10px 5px;
         background: #fafafa;
         border: 1px solid #eee;
         border-radius: 8px;
         text-decoration: none;
         color: var(--charcoal);
-        font-size: 0.75em; /* Slightly smaller text to fit the icon */
+        font-size: 0.8em;
         font-weight: 600;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 8px; /* Space between icon and text */
-        transition: background 0.2s;
+        transition: all 0.2s ease;
     }
     
     .nav-btn:hover {
-        background: #f0f0f0;
+        background: #fff;
+        border-color: var(--gold);
+        transform: translateY(-2px); /* Subtle lift effect */
     }
     
     .nav-btn svg {
@@ -142,17 +150,17 @@
 
             <div class="btn-grid">
                 <a href="https://www.waze.com/en/live-map/directions/il/%D7%9E%D7%97%D7%95%D7%96-%D7%94%D7%9E%D7%A8%D7%9B%D7%96/alexander-events?place=ChIJ4_IsSGUTHRUR_oRQCqe0Rus" class="nav-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 0 12 0A6 6 0 0 0 6 9Z"/><path d="M12 15V3"/><path d="m15 6-3-3-3 3"/></svg>
+                    <img src="icon-waze.png" alt="Waze">
                     Waze
                 </a>
             
-                <a href="http://googleusercontent.com/maps.google.com/7" class="nav-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <a href="https://www.google.com/maps/place/Alexander+Events/data=!4m2!3m1!1s0x0:0xeb46b4a70a5084fe?sa=X&ved=1t:2428&ictx=111" class="nav-btn">
+                    <img src="icon-google.png" alt="Google Maps">
                     Google
                 </a>
             
                 <a href="https://maps.apple/p/61sVoAboA5Rk7c" class="nav-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <img src="icon-apple.png" alt="Apple Maps">
                     Apple
                 </a>
             </div>
