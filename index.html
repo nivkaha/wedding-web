@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding | החתונה שלנו</title>
+    <style>
+        :root {
+            --gold: #c5a059;
+            --charcoal: #333333;
+            --rose-bg: #fff5f5; 
+            --card-bg: #ffffff;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--rose-bg);
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .lang-nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+        }
+
+        .lang-nav button {
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 18px;
+            margin: 0 4px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .lang-nav button:hover { background: var(--gold); color: white; }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .invite-hero {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            background: #fff;
+            min-height: 300px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        h2 { color: var(--gold); margin-top: 0; font-size: 1.4em; }
+
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 20px; }
+        .nav-btn {
+            padding: 12px 5px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .link-box {
+            display: block;
+            text-decoration: none;
+            color: var(--charcoal);
+            border: 1px solid transparent;
+        }
+        .link-box:hover { border-color: var(--gold); }
+
+        /* Visibility Logic */
+        [lang="en"] .lang-he, [lang="en"] .lang-de { display: none; }
+        [lang="he"] .lang-en, [lang="he"] .lang-de { display: none; }
+        [lang="de"] .lang-en, [lang="de"] .lang-he { display: none; }
+        
+        [dir="rtl"] .section { text-align: right; }
+    </style>
+</head>
+<body>
+
+    <div class="lang-nav">
+        <button onclick="setLang('en')">English</button>
+        <button onclick="setLang('he')">עברית</button>
+        <button onclick="setLang('de')">Deutsch</button>
+    </div>
+
+    <div class="container">
+        <img id="main-invite" src="Wedding Invitation-Final-en.png" alt="Wedding Invitation" class="invite-hero">
+
+        <div class="section">
+            <h2 class="lang-en">📍 Location & Schedule</h2>
+            <h2 class="lang-he">📍 מיקום ולו״ז</h2>
+            <h2 class="lang-de">📍 Ort & Zeitplan</h2>
+            
+            <p class="lang-en"><strong>March 20, 2026</strong><br>11:00 AM - Reception<br>12:00 PM - Ceremony</p>
+            <p class="lang-he"><strong>20 במרץ, 2026</strong><br>11:00 - קבלת פנים<br>12:00 - חופה וקידושין</p>
+            <p class="lang-de"><strong>20. März 2026</strong><br>11:00 - Empfang<br>12:00 - Zeremonie</p>
+
+            <div class="btn-grid">
+                <a href="https://www.waze.com/en/live-map/directions/il/%D7%9E%D7%97%D7%95%D7%96-%D7%94%D7%9E%D7%A8%D7%9B%D7%96/alexander-events?place=ChIJ4_IsSGUTHRUR_oRQCqe0Rus" class="nav-btn">Waze</a>
+                <a href="https://www.google.com/maps/place/Alexander+Events/data=!4m2!3m1!1s0x0:0xeb46b4a70a5084fe?sa=X&ved=1t:2428&ictx=111" class="nav-btn">Google Maps</a>
+                <a href="https://maps.apple/p/61sVoAboA5Rk7c" class="nav-btn">Apple Maps</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="lang-en">🎥 Live Stream</h2>
+            <h2 class="lang-he">🎥 שידור חי</h2>
+            <h2 class="lang-de">🎥 Live-Übertragung</h2>
+            <p class="lang-en">We will go live 10 minutes before the ceremony.</p>
+            <p class="lang-he">נשדר בשידור חי 10 דקות לפני תחילת הטקס.</p>
+            <p class="lang-de">Wir gehen 10 Minuten vor der Zeremonie live.</p>
+            <a href="YOUR_YOUTUBE_LINK" class="nav-btn" style="display:inline-block; border-color: #ff0000; color: #ff0000; padding: 10px 25px; width: auto;">🔴 YouTube Live</a>
+        </div>
+
+        <div class="section">
+            <h2 class="lang-en">📸 Photos</h2>
+            <h2 class="lang-he">📸 תמונות מהאירוע</h2>
+            <h2 class="lang-de">📸 Hochzeitsfotos</h2>
+            <div style="padding: 15px; border: 1px dashed #ccc; border-radius: 8px; background: #f9f9f9;">
+                (Upload functionality coming soon)
+            </div>
+        </div>
+
+        <a href="menu.html" id="link-menu" class="link-box section">
+            <h2 class="lang-en">🍽️ Food Menu</h2>
+            <h2 class="lang-he">🍽️ תפריט האוכל</h2>
+            <h2 class="lang-de">🍽️ Menü</h2>
+            <span class="lang-en">See what's for dinner →</span>
+            <span class="lang-he">בואו לראות מה מחכה לכם בשולחן ←</span>
+            <span class="lang-de">Sehen Sie sich das Menü an →</span>
+        </a>
+
+        <a href="transcript.html" id="link-transcript" class="link-box section">
+            <h2 class="lang-en">📜 Ceremony Transcript</h2>
+            <h2 class="lang-he">📜 נוסח הטקס</h2>
+            <h2 class="lang-de">📜 Zeremonie-Text</h2>
+            <span class="lang-en">Follow along with translations →</span>
+            <span class="lang-he">תרגום של הטקס לעוקבים מרחוק ←</span>
+            <span class="lang-de">Verfolgen Sie die Übersetzung →</span>
+        </a>
+    </div>
+<div id="extra-box" class="section" style="display: none; border: 2px solid var(--gold);">
+    <h2 class="lang-en">✨ Special Update</h2>
+    <h2 class="lang-he">✨ עדכון חשוב</h2>
+    <h2 class="lang-de">✨ Wichtige Info</h2>
+    
+    <p class="lang-en">Add your English message here.</p>
+    <p class="lang-he">הוסיפו את ההודעה שלכם כאן.</p>
+    <p class="lang-de">Fügen Sie hier Ihre Nachricht hinzu.</p>
+</div>
+    <script>
+        function setLang(lang) {
+            const root = document.getElementById('site-root');
+            const inviteImg = document.getElementById('main-invite');
+            
+            root.setAttribute('lang', lang);
+            root.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+            inviteImg.src = 'Wedding Invitation-Final-' + lang + '.png';
+
+            // Update sub-page links to persist the language
+            document.getElementById('link-menu').href = 'menu.html?lang=' + lang;
+            document.getElementById('link-transcript').href = 'transcript.html?lang=' + lang;
+        }
+
+        // AUTO-DETECT LANGUAGE FROM URL ON LOAD
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            if (lang && (lang === 'en' || lang === 'he' || lang === 'de')) {
+                setLang(lang);
+            }
+        };
+    </script>
+</body>
+</html>
