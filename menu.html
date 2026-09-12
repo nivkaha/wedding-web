@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" id="site-root" dir="ltr">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu | תפריט</title>
     <style>
@@ -16,7 +16,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             background-color: var(--rose-bg);
             color: var(--charcoal);
-            margin: 0; padding: 20px;
+            margin: 0; 
+            padding: 20px;
         }
 
         .container { max-width: 500px; margin: 0 auto; }
@@ -26,28 +27,43 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            text-align: center;
+            text-align: left;
         }
 
-        h1 { color: var(--gold); margin-bottom: 30px; font-size: 1.8em; }
-        h2 { color: var(--gold); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 25px; }
+        h1 { color: var(--gold); margin-bottom: 5px; font-size: 1.8em; text-align: center; }
+        .subtitle { color: #888; font-size: 1.1em; margin-bottom: 25px; text-align: center; font-weight: 600; letter-spacing: 0.05em; }
+        h2 { color: var(--gold); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 25px; font-size: 1.25em; text-align: center; }
 
         .menu-item { margin-bottom: 20px; }
-        .dish-name { font-weight: bold; display: block; }
-        .dish-desc { font-size: 0.9em; color: #666; }
+        .dish-name { font-weight: bold; display: block; margin-bottom: 4px; }
+        .dish-desc { font-size: 0.9em; color: #666; line-height: 1.5; }
+
+        .notes {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed #eee;
+            font-size: 0.85em;
+            color: #777;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .notes strong {
+            color: var(--gold);
+        }
 
         .back-btn {
-            display: inline-block;
+            display: block;
             margin-top: 30px;
             text-decoration: none;
             color: var(--gold);
             font-weight: bold;
+            text-align: center;
         }
 
-        /* Language Logic */
-        [lang="en"] .lang-he, [lang="en"] .lang-de { display: none; }
-        [lang="he"] .lang-en, [lang="he"] .lang-de { display: none; }
-        [lang="de"] .lang-en, [lang="de"] .lang-he { display: none; }
+        /* Dynamic Language Visibility */
+        [lang="en"] .lang-he { display: none; }
+        [lang="he"] .lang-en { display: none; }
         [dir="rtl"] .section { text-align: right; }
     </style>
 </head>
@@ -55,54 +71,104 @@
 
     <div class="container">
         <div class="section">
-            <h1 class="lang-en">🍽️ Our Menu</h1>
-            <h1 class="lang-he">🍽️ התפריט שלנו</h1>
-            <h1 class="lang-de">🍽️ Unser Menü</h1>
+            <!-- Header -->
+            <h1 class="lang-en">May &amp; Niv</h1>
+            <h1 class="lang-he">מאי &amp; ניב</h1>
 
-            <h2 class="lang-en">Coming Soon</h2>
-            <h2 class="lang-he">בקרוב</h2>
-            <h2 class="lang-de">Soon</h2>
-            
-            <!--- <h2 class="lang-en">Appetizers</h2>
-            <h2 class="lang-he">מנות פתיחה</h2>
-            <h2 class="lang-de">Vorspeisen</h2>
-            <div class="menu-item">
-                <span class="dish-name lang-en">Garden Fresh Salad</span>
-                <span class="dish-name lang-he">סלט גן רענן</span>
-                <span class="dish-name lang-de">Frischer Gartensalat</span>
+            <div class="subtitle lang-en">MENU</div>
+            <div class="subtitle lang-he">התפריט</div>
+
+            <!-- Appetizers -->
+            <h2 class="lang-en">Appetizers and Center-of-the-Table Dishes</h2>
+            <h2 class="lang-he">מנות פתיחה ומנות מרכז השולחן</h2>
+
+            <div class="menu-item" style="text-align: center;">
+                <span class="dish-desc lang-en">
+                    Quinoa salad • Thai salad • Health salad • Garden herb salad<br>
+                    Breaded mushrooms and potatoes • Chicken liver pâté • Beef carpaccio
+                </span>
+                <span class="dish-desc lang-he">
+                    סלט קינואה • סלט תאילנדי • סלט בריאות • סלט עשבי גינה<br>
+                    פטריות בציפוי ופוטטוס • פטה כבדים • קרפצ'יו בקר
+                </span>
             </div>
 
-            <h2 class="lang-en">Main Course</h2>
-            <h2 class="lang-he">מנות עיקריות</h2>
-            <h2 class="lang-de">Hauptspeisen</h2>
-            <div class="menu-item">
-                <span class="dish-name lang-en">Slow Roasted Beef</span>
-                <span class="dish-name lang-he">נתח בקר בצלייה איטית</span>
-                <span class="dish-name lang-de">Langsam gebratenes Rindfleisch</span>
-            </div> -->
+            <!-- Mains -->
+            <h2 class="lang-en">Main Courses</h2>
+            <h2 class="lang-he">מנות עיקריות לבחירה</h2>
 
-            <a href="index.html" id="back-link" class="back-btn">
+            <div class="menu-item">
+                <span class="dish-name lang-en">Fish Fillet with Gnocchi</span>
+                <span class="dish-name lang-he">פילה דג עם ניוקי</span>
+                <span class="dish-desc lang-en">Fresh sea fish fillet cooked on a plancha with herbs, served with potato gnocchi in a creamy basil pesto sauce.</span>
+                <span class="dish-desc lang-he">פילה דג ים טרי בפלאנצ'ה עם עשבי תיבול, מוגש עם ניוקי תפו"א ברוטב שמנת פסטו בזיליקום.</span>
+            </div>
+
+            <div class="menu-item">
+                <span class="dish-name lang-en">Schnitzel and Campfire Potato</span>
+                <span class="dish-name lang-he">שניצל ותפוח אדמה מדורה</span>
+                <span class="dish-desc lang-en">Alexander schnitzel coated in almonds, served with chipotle aioli and truffle aioli, house pickles, and a campfire-style baked potato.</span>
+                <span class="dish-desc lang-he">שניצל אלכסנדר בציפוי שקדים, איולי צ'יפוטלה ואיולי כמהין, חמוצי הבית ותפוח אדמה מדורה.</span>
+            </div>
+
+            <div class="menu-item">
+                <span class="dish-name lang-en">Veal Asado with Potato Cream</span>
+                <span class="dish-name lang-he">אסאדו עגל עם קרם תפוחי אדמה</span>
+                <span class="dish-desc lang-en">Milk-fed veal asado (bone-in) served with potato cream, roasted vegetables, and a citrus barbecue sauce.</span>
+                <span class="dish-desc lang-he">אסאדו עגל חלב (עם עצם) מוגש עם קרם תפוחי אדמה, ירקות צלויים, רוטב ברביקיו והדרים.</span>
+            </div>
+
+            <div class="menu-item">
+                <span class="dish-name lang-en">Beef Fillet and Vegetables</span>
+                <span class="dish-name lang-he">פילה בקר וירקות</span>
+                <span class="dish-desc lang-en">Premium beef fillet, crispy sweetbread medallion, beef jus with pepper and Dijon mustard, green crunch garnish, and kohlrabi with chestnuts, shimeji mushrooms, and shallots.</span>
+                <span class="dish-desc lang-he">פילה בקר משובח, סוכריית שקדי עגל, רוטב ציר בקר פלפל וחרדל דיז'ון, קראנץ ירוקים וקולורבי ערמונים שימג'י ובצלי שאלוט.</span>
+            </div>
+
+            <div class="menu-item">
+                <span class="dish-name lang-en">Sweet Potato Ravioli – Vegan</span>
+                <span class="dish-name lang-he">רביולי בטטה - טבעוני</span>
+                <span class="dish-desc lang-en">Sweet potato ravioli in a mushroom cream sauce with fresh basil leaves.</span>
+                <span class="dish-desc lang-he">רביולי בטטה ברוטב שמנת פטריות ועלי בזיליקום.</span>
+            </div>
+
+            <!-- Notes -->
+            <div class="notes">
+                <p class="lang-en">You may order as many dishes as you want!</p>
+                <p class="lang-en">For gluten-free adaptations, please ask your server.</p>
+                <p class="lang-en"><strong>After the meal a dessert and fruit bar.</strong></p>
+
+                <p class="lang-he">ניתן להזמין את כל המנות ללא הגבלה.</p>
+                <p class="lang-he">להתאמת מנה ללא גלוטן שאל את המלצר.</p>
+                <p class="lang-he"><strong>בסיום הארוחה- בר קינוחים ופירות.</strong></p>
+            </div>
+
+            <!-- Back Link -->
+            <a href="index.html?lang=en" id="back-link" class="back-btn">
                 <span class="lang-en">← Back to Main Page</span>
-                <span class="lang-he">← חזרה לעמוד הראשי</span>
-                <span class="lang-de">← Zurück zur Hauptseite</span>
+                <span class="lang-he">חזרה לעמוד הראשי →</span>
             </a>
         </div>
     </div>
 
     <script>
-        function setLang(lang) {
+        function applyLanguage(lang) {
             const root = document.getElementById('site-root');
+            const backLink = document.getElementById('back-link');
+            
+            // Set document attributes for CSS display and text direction
             root.setAttribute('lang', lang);
             root.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
-            document.getElementById('back-link').href = 'index.html?lang=' + lang;
+            
+            // Dynamically build the return URL matching the current language
+            backLink.href = 'index.html?lang=' + encodeURIComponent(lang);
         }
 
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang') || 'en';
-            setLang(lang);
-        };
+        (function init() {
+            const params = new URLSearchParams(window.location.search);
+            const selectedLang = params.get('lang') === 'he' ? 'he' : 'en';
+            applyLanguage(selectedLang);
+        })();
     </script>
 </body>
-
 </html>
