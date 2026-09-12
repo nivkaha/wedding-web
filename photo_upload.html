@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Photos | העלאת תמונות</title>
+    <style>
+        :root {
+            --gold: #c5a059;
+            --gold-hover: #b08d4b;
+            --charcoal: #333333;
+            --rose-bg: #fff5f5;
+            --card-bg: #ffffff;
+            --border-color: #e5e5e5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--rose-bg);
+            color: var(--charcoal);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container { max-width: 500px; margin: 0 auto; }
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        h1 { color: var(--gold); margin-bottom: 5px; font-size: 1.8em; text-align: center; }
+        .subtitle { color: #888; font-size: 1.1em; margin-bottom: 25px; text-align: center; font-weight: 600; letter-spacing: 0.05em; }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: var(--charcoal);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--gold);
+        }
+
+        input[type="file"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 0;
+            font-family: inherit;
+            font-size: 0.9em;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--gold);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--gold-hover);
+        }
+
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .status-msg {
+            margin-top: 16px;
+            font-size: 0.9em;
+            text-align: center;
+            line-height: 1.5;
+            min-height: 20px;
+            color: #666;
+        }
+
+        .notes {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed #eee;
+            font-size: 0.85em;
+            color: #777;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .back-btn {
+            display: block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: var(--gold);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Dynamic Language Visibility */
+        [lang="en"] .lang-he { display: none; }
+        [lang="he"] .lang-en { display: none; }
+        [dir="rtl"] .section { text-align: right; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="section">
+            <!-- Header -->
+            <h1 class="lang-en">May &amp; Niv</h1>
+            <h1 class="lang-he">מאי &amp; ניב</h1>
+
+            <div class="subtitle lang-en">PHOTO UPLOAD</div>
+            <div class="subtitle lang-he">העלאת תמונות</div>
+
+            <!-- Upload Form -->
+            <div class="form-group">
+                <label for="guestName">
+                    <span class="lang-en">Your Name (optional):</span>
+                    <span class="lang-he">השם שלכם (רשות):</span>
+                </label>
+                <input type="text" id="guestName">
+            </div>
+
+            <div class="form-group">
+                <label for="photoInput">
+                    <span class="lang-en">Select Photos &amp; Videos:</span>
+                    <span class="lang-he">בחירת תמונות וסרטונים:</span>
+                </label>
+                <!-- accept="image/*,video/*" allows choosing from gallery or shooting live -->
+                <input type="file" id="photoInput" accept="image/*,video/*" multiple>
+            </div>
+
+            <button id="uploadBtn" class="submit-btn" onclick="uploadPhotos()">
+                <span class="lang-en">Upload</span>
+                <span class="lang-he">העלאה</span>
+            </button>
+
+            <div id="statusMessage" class="status-msg"></div>
+
+            <div class="notes">
+                <p class="lang-en">
+                    Photos and videos are uploaded in their full original quality. No account required!
+                </p>
+                <p class="lang-he">
+                    התמונות והסרטונים עולים באיכות מקורית מלאה. אין צורך בהתחברות!
+                </p>
+            </div>
+
+            <!-- Back Link -->
+            <a href="index.html?lang=en" id="back-link" class="back-btn">
+                <span class="lang-en">← Back to Main Page</span>
+                <span class="lang-he">חזרה לעמוד הראשי →</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Paste your Cloudflare Worker URL here (e.g. "https://wedding-upload.your-subdomain.workers.dev")
+        const WORKER_URL = "https://rough-base-bc09.niv-kaha.workers.dev";
+
+        let currentLang = 'en';
+
+        const i18n = {
+            en: {
+                placeholder: "Name",
+                alertSelect: "Please select at least one photo or video.",
+                uploading: (current, total, name) => `Uploading ${current} of ${total}: ${name}...`,
+                success: "All files uploaded successfully! Thank you!",
+                error: (fileName) => `Error uploading ${fileName}. Please try again.`
+            },
+            he: {
+                placeholder: "שם",
+                alertSelect: "נא לבחור לפחות קובץ אחד להעלאה.",
+                uploading: (current, total, name) => `מעלה ${current} מתוך ${total}: ${name}...`,
+                success: "כל הקבצים הועלו בהצלחה! תודה רבה!",
+                error: (fileName) => `שגיאה בהעלאת ${fileName}. נא לנסות שוב.`
+            }
+        };
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            const root = document.getElementById('site-root');
+            const backLink = document.getElementById('back-link');
+            const guestNameInput = document.getElementById('guestName');
+
+            root.setAttribute('lang', lang);
+            root.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+            guestNameInput.placeholder = i18n[lang].placeholder;
+            backLink.href = 'index.html?lang=' + encodeURIComponent(lang);
+        }
+
+        async function uploadPhotos() {
+            const fileInput = document.getElementById("photoInput");
+            const guestNameInput = document.getElementById("guestName");
+            const guestName = guestNameInput.value.trim() || (currentLang === 'he' ? 'אנונימי' : 'Anonymous');
+            const statusMsg = document.getElementById("statusMessage");
+            const uploadBtn = document.getElementById("uploadBtn");
+
+            if (!fileInput.files.length) {
+                alert(i18n[currentLang].alertSelect);
+                return;
+            }
+
+            uploadBtn.disabled = true;
+            uploadBtn.style.opacity = "0.6";
+
+            const files = Array.from(fileInput.files);
+            const totalFiles = files.length;
+
+            for (let i = 0; i < totalFiles; i++) {
+                const file = files[i];
+                statusMsg.innerText = i18n[currentLang].uploading(i + 1, totalFiles, file.name);
+
+                try {
+                    // Send query params for guest & filename
+                    const endpoint = `${WORKER_URL}?guest=${encodeURIComponent(guestName)}&filename=${encodeURIComponent(file.name)}`;
+
+                    // Streams the raw binary directly into your Cloudflare Worker -> R2 bucket
+                    const response = await fetch(endpoint, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": file.type || "application/octet-stream"
+                        },
+                        body: file
+                    });
+
+                    if (!response.ok) {
+                        const errData = await response.json().catch(() => ({}));
+                        throw new Error(errData.error || `HTTP ${response.status}`);
+                    }
+
+                } catch (err) {
+                    console.error("Upload error:", err);
+                    statusMsg.innerText = i18n[currentLang].error(file.name);
+                    uploadBtn.disabled = false;
+                    uploadBtn.style.opacity = "1";
+                    return;
+                }
+            }
+
+            statusMsg.innerText = i18n[currentLang].success;
+            fileInput.value = "";
+            guestNameInput.value = "";
+            uploadBtn.disabled = false;
+            uploadBtn.style.opacity = "1";
+        }
+
+        (function init() {
+            const params = new URLSearchParams(window.location.search);
+            const selectedLang = params.get('lang') === 'he' ? 'he' : 'en';
+            applyLanguage(selectedLang);
+        })();
+    </script>
+</body>
+</html>
