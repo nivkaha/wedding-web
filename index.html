@@ -187,7 +187,15 @@
                 (Upload coming soon)
             </div>
         </div>
-
+        <a href="photo_upload.html" id="link-upload" class="link-box section">
+            <h2 class="lang-en">📸 Photos</h2>
+            <h2 class="lang-he">📸 תמונות מהאירוע</h2>
+            <h2 class="lang-de">📸 Hochzeitsfotos</h2>
+            <span class="lang-en">Click here to upload photos from the event →</span>
+            <span class="lang-he">לחץ כאן להעלאת תמונות מהאירוע ←</span>
+            <span class="lang-de">Klicken Sie hier, um Fotos von der Veranstaltung hochzuladen →</span>
+        </a>
+        <!--
         <div class="section">
             <h2 class="lang-en">⚠️ Note</h2>
             <h2 class="lang-he">⚠️ האתר עדיין בבנייה</h2>
@@ -197,7 +205,7 @@
                <p class="lang-he">אתר זה יעודכן ככל שנתקרב לאירוע עם פרטים נוספים.</p>
                <p class="lang-de">This webite will be updated as we get closer to the event with more details.</p>
             </div>
-        </div>
+        </div> -->
 
         <a href="menu.html" id="link-menu" class="link-box section">
             <h2 class="lang-en">🍽️ Food Menu</h2>
@@ -216,7 +224,7 @@
             <span class="lang-he">תרגום של הטקס לעוקבים מרחוק ←</span>
             <span class="lang-de">Verfolgen Sie die Übersetzung →</span>
         </a>
-    </div> -->
+    </div> 
 <div id="extra-box" class="section" style="display: none; border: 2px solid var(--gold);">
     <h2 class="lang-en">✨ Special Update</h2>
     <h2 class="lang-he">✨ עדכון חשוב</h2>
@@ -225,7 +233,7 @@
     <p class="lang-en">Add your English message here.</p>
     <p class="lang-he">הוסיפו את ההודעה שלכם כאן.</p>
     <p class="lang-de">Fügen Sie hier Ihre Nachricht hinzu.</p>
-</div>
+</div>-->
     <script>
         function setLang(lang) {
             const root = document.getElementById('site-root');
@@ -237,6 +245,7 @@
 
             // Update sub-page links to persist the language
             document.getElementById('link-menu').href = 'menu.html?lang=' + lang;
+            document.getElementById('link-upload').href = 'photo_upload.html?lang=' + lang;
             document.getElementById('link-transcript').href = 'transcript.html?lang=' + lang;
         }
 
